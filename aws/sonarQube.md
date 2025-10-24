@@ -3,7 +3,7 @@
 This guide walks you through the steps of installing Java 21 and SonarQube Community Edition on a Linux system, including necessary permissions and cleanup procedures.
 
 ## 1. Install Java 21 (Amazon Corretto)
-SonarQube requires Java 21, so first, we need to install it.
+Java installation for sonarqube
 
 ```bash
 # Install Amazon Corretto 21 (Headless)
