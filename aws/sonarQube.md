@@ -19,7 +19,7 @@ java -version
 javac -version
 
 ```
-## 1. Install SonarQube
+## 2. Install SonarQube
 ```bash
 ## Navigate to the /opt directory
 cd /opt
