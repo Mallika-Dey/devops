@@ -54,16 +54,6 @@ docker run -p 27017:27017 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB
 docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=1234 -e ME_CONFIG_MONGODB_SERVER=mongodb --net mongo-network --name mongo-express mongo-express
 ```
 
-Enter Inside Running Container
-```bash
-# if bash
-docker exec -it <container_name> bash
-
-# if using sh
-docker exec -it <container_name> sh
-
-```
-
 Build an image from dockerfile
 
 ```bash
