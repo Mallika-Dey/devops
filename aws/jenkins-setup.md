@@ -13,6 +13,13 @@ wget https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-
 # Extract the tarball
 tar xvf apache-maven-3.9.11-bin.tar.gz
 ```
+Add Maven Home to _/etc/profile_
+```bash
+export M2_HOME=/opt/apache-maven-3.9.11
+export MAVEN_HOME=$M2_HOME
+export PATH=$M2_HOME/bin:$PATH
+```
+
 ## 2. Install Jenkins
 ### Add Jenkins Repository
 ```bash
