@@ -81,9 +81,13 @@ docker network inspect <network_name>
 Docker cleanup
 
 ```bash
+# remove unused containers
 docker container prune
 
+# remove unused images
 docker image prune
+
+# remove stopped container, unused images, unused networks, cache
 docker system prune
 
 ```
