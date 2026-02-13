@@ -83,7 +83,7 @@ mallika-macvlan20
 ```
 
 ## IPVLAN
-### L2 (Default mode)
+<h3>1. L2 (Default mode)</h3>
 
 ```bash
 # create ipvlan network in L2 mode (default)
@@ -99,7 +99,8 @@ docker run -itd --rm --network mallika-ipvlan \
 --name con3 busybox
 ```
 
-**Why host ↔ container does NOT work on bare metal**
+**Why host ↔ container does NOT work on bare metal:**
+
 Linux kernel drops packets that loop back to the same NIC.
 
 ```bash
@@ -121,7 +122,7 @@ Environment Comparison
 | **Macvlan** | Unique MAC per container | Looks like real device |
 | **IPvlan**  | Same MAC for all         | Lightweight, scalable  |
 
-### L3 Mode
+<h3>2. L3 Mode</h3>
 
 A container can ping another container of different subnet.
 ```bash
