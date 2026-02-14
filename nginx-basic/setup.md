@@ -23,7 +23,10 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ### Add base in vite.config.js
 ```bash
-base: '/app2/',
+export default defineConfig({
+  base: '/app2/',
+  // other Vite config options...
+});
 ```
 
 ## nginx.conf file
