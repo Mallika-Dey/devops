@@ -1,4 +1,6 @@
 ## Architecture
+There are 3 replicas of the poc, load-balanced by Nginx
+
 ```bash
                          ┌───────────────────────────┐
                          │      Client / Browser     │
