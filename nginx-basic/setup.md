@@ -1,32 +1,30 @@
 ## Frontend Configuration
 
-### Add Dockerfile
+## Folder Structure
 ```bash
-# Stage 1: Build
-FROM node:18-alpine AS builder
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-# Stage 2: Serve with Nginx
-FROM nginx:alpine
-
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+project/
+│
+├── docker-compose.yml
+│
+├── reverse-proxy/
+│   └── nginx.conf
+│
+├── frontend1/
+│
+└── frontend2/
 ```
 
-### Add base in vite.config.js
+### Add base 
+
 ```bash
+# For react add base in vite.config.js
 export default defineConfig({
   base: '/app2/',
   // other Vite config options...
 });
+
+# Angular - base in index.html
+<base href="/app2/">
 ```
 
 ## nginx.conf file
@@ -36,43 +34,38 @@ events {}
 http {
     server {
         listen 80;
+        root /usr/share/nginx/html;
 
         location /app1/ {
-            proxy_pass http://template-demo:80/;
+            try_files $uri $uri/ /app1/index.html;
         }
 
         location /app2/ {
-            proxy_pass http://poc:80/;
+            try_files $uri $uri/ /app2/index.html;
         }
     }
 }
 ```
 
 ## docker-compose.yml file
+```bash
+# create dist
+ng build --configuration production --base-href /app2/
+```
 
 ```bash
 services:
-  template-demo:
-    build: ./Templet-demo
-    container_name: template-demo
-    restart: always
-
-  poc:
-    build: ./templet-POC
-    container_name: poc
-    restart: always
-
-  reverse-proxy:
+  nginx:
     image: nginx:alpine
-    container_name: reverse-proxy
+    container_name: nginx
     ports:
       - "4000:80"
     volumes:
       - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - template-demo
-      - poc
-    restart: always
+       # Mount Angular build output
+      - ./app-1/dist/app1/browser:/usr/share/nginx/html/app1:ro
+      - ./app-2/dist/app-2/browser:/usr/share/nginx/html/app2:ro
+
 ```
 ## Running Application
 ```bash
@@ -80,5 +73,5 @@ docker compose up -d --build
 ```
 
 Access the apps via the reverse proxy 
-1. http://localhost:4000/app1
-2. http://localhost:4000/app2
+1. http://localhost:4000/app1/
+2. http://localhost:4000/app2/
