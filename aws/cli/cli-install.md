@@ -6,6 +6,17 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
+# AWS CLI Commands
+
+```bash
+## at first create iam role
+## configure aws cli
+aws configure
+
+## list of iam users
+aws iam list-users
+```
+
 
 
 
