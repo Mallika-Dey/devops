@@ -6,6 +6,7 @@
 
 ## Bucket policy example
 ```bash
+# s3 buckets are by default private
 # create a upload policy for bucket
 
 {

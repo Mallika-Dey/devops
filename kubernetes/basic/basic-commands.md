@@ -43,3 +43,11 @@ kubectl delete replicaset replicaset-1 replicaset-2
 # scale replicaset
 kubectl scale rs myreplicaset --replicas=5
 ```
+
+```bash
+# suppose already a deployment frontend
+kubectl edit deploy frontend
+
+# describe a k8s service named kubernetes
+kubectl describe svc  kubernetes
+```
